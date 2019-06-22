@@ -82,6 +82,7 @@ LOCAL_SHARED_LIBRARIES := libhardware libnativewindow
 LOCAL_STATIC_LIBRARIES := liblog libcutils libarect libExynosVideoApi
 
 LOCAL_C_INCLUDES := \
+	$(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr/include \
 	$(EXYNOS_OMX_INC)/exynos \
 	$(EXYNOS_OMX_TOP)/osal \
 	$(EXYNOS_OMX_COMPONENT)/common \
@@ -95,7 +96,8 @@ LOCAL_C_INCLUDES := \
 	$(TOP)/frameworks/native/libs/nativebase/include \
 	$(TOP)/frameworks/native/libs/nativewindow/include
 
-LOCAL_HEADER_LIBRARIES := generated_kernel_headers
+LOCAL_ADDITIONAL_DEPENDENCIES += \
+	INSTALLED_KERNEL_HEADERS
 
 ifeq ($(BOARD_USE_ANDROID), true)
 LOCAL_C_INCLUDES += $(ANDROID_MEDIA_INC)/hardware
